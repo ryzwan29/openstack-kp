@@ -1,0 +1,23 @@
+---
+# apt update + upgrade + reboot on all Ubuntu nodes (synology excluded)
+# order: controller -> computes (one at a time, Ceph HCI) -> deployer (last)
+
+- name: Upgrade & reboot controller
+  hosts: controllers
+  serial: 1
+  tasks:
+    - import_tasks: tasks_upgrade.yml
+
+- name: Upgrade & reboot computes + Ceph OSDs (one at a time)
+  hosts: computes
+  serial: 1
+  tasks:
+    - import_tasks: tasks_upgrade.yml
+    - name: Give Ceph time to recover/peer before the next node
+      ansible.builtin.pause:
+        seconds: 60
+
+- name: Upgrade & reboot deployer (last)
+  hosts: deployer
+  tasks:
+    - import_tasks: tasks_upgrade.yml

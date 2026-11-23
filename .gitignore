@@ -1,0 +1,18 @@
+# terraform
+terraform/*.tfstate*
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfvars
+
+# ansible
+
+# kolla-ansible
+kolla-ansible/config/cinder/cinder-volume.conf
+kolla-ansible/config/cinder/cinder-volume/ceph.conf
+kolla-ansible/config/cinder/cinder-volume/ceph.client.cinder.keyring
+
+kolla-ansible/config/glance/ceph.client.glance.keyring
+kolla-ansible/config/glance/ceph.conf
+
+kolla-ansible/config/nova/ceph.client.cinder.keyring
+kolla-ansible/config/nova/ceph.conf

@@ -1,0 +1,23 @@
+---
+- name: apt update + dist-upgrade
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
+    autoremove: true
+    autoclean: true
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+
+- name: Reboot
+  ansible.builtin.reboot:
+    reboot_timeout: 900
+    msg: "Reboot by ansible after upgrade"
+
+- name: Get uptime after reboot
+  ansible.builtin.command: uptime -p
+  register: up
+  changed_when: false
+
+- name: Show uptime
+  ansible.builtin.debug:
+    msg: "{{ inventory_hostname }}: {{ up.stdout }}"

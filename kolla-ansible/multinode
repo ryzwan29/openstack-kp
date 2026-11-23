@@ -1,0 +1,19 @@
+[control]
+kp-openstack-controller-01
+
+[network]
+kp-openstack-controller-01
+
+[compute]
+kp-openstack-compute-01 
+kp-openstack-compute-02 
+kp-openstack-compute-03 
+
+[monitoring]
+kp-openstack-controller-01 
+
+[storage]
+kp-openstack-controller-01 
+
+[deployment]
+localhost       ansible_connection=local
