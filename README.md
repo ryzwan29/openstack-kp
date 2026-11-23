@@ -1,2 +1,1 @@
 # openstack-kp
-# openstack-kp
